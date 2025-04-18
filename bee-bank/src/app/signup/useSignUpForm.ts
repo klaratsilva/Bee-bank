@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { message } from 'antd';
 import { z } from 'zod';
-import { User } from '@/lib/types';
+
 import { BASE_URL } from '@/server/const'; 
+import type { User } from '@/lib/types';
 
 const signupSchema = z.object({
   name: z.string().min(3, 'Full name is required'),

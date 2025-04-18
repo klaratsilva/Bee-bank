@@ -1,9 +1,11 @@
-'use client';
-import { Modal } from 'antd';
-import { useEffect } from 'react';
-import AddNewTransactionForm from './AddNewTransactionForm';
-import useAddNewTransactionForm from './useAddNewTransactionForm';
-import { Transaction } from '@/lib/types';
+"use client";
+import { Modal } from "antd";
+import { useEffect } from "react";
+
+import AddNewTransactionForm from "./AddTransactionForm";
+import useAddTransactionForm from "./useAddTransactionForm";
+
+import type { Transaction } from "@/lib/types";
 
 interface Props {
   accountId: string;
@@ -12,8 +14,17 @@ interface Props {
   onAdd: (transaction: Transaction) => void;
 }
 
-export default function AddTransactionModal({ visible, onClose, onAdd, accountId }: Props) {
-  const { form, handleSubmit, resetForm } = useAddNewTransactionForm(accountId, onAdd, onClose);
+export default function AddTransactionModal({
+  visible,
+  onClose,
+  onAdd,
+  accountId,
+}: Props) {
+  const { form, handleSubmit, resetForm } = useAddTransactionForm(
+    accountId,
+    onAdd,
+    onClose
+  );
 
   useEffect(() => {
     if (!visible) resetForm();

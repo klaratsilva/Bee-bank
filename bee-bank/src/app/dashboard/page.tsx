@@ -1,30 +1,31 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Account, Transaction } from "@/lib/types";
-import AccountList from './AccountList';
-import { BASE_URL } from '@/server/const';
+"use client";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+import AccountList from "./AccountList";
+import { BASE_URL } from "@/server/const";
+import type { Account, Transaction } from "@/lib/types";
 
 export default function Dashboard() {
   const [user, setUser] = useState<{ name: string } | null>(null);
-  const [transactions, setTransactions] = useState<Transaction[]>([]); 
-  const [accounts, setAccounts] = useState<Account[]>([]); // 
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [accounts, setAccounts] = useState<Account[]>([]);
   const router = useRouter();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (!storedUser) return router.push('/login');
+    const storedUser = localStorage.getItem("user");
+    if (!storedUser) return router.push("/login");
     setUser(JSON.parse(storedUser));
 
     const fetchData = async () => {
       try {
         const [accountsResponse, transactionsResponse] = await Promise.all([
           fetch(`${BASE_URL}/accounts`),
-          fetch(`${BASE_URL}/transactions`)
+          fetch(`${BASE_URL}/transactions`),
         ]);
 
         if (!accountsResponse.ok || !transactionsResponse.ok) {
-          throw new Error('Failed to fetch data');
+          throw new Error("Failed to fetch data");
         }
 
         const accountsData = await accountsResponse.json();
@@ -33,7 +34,7 @@ export default function Dashboard() {
         setAccounts(accountsData);
         setTransactions(transactionsData);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -45,14 +46,14 @@ export default function Dashboard() {
   };
 
   return (
-    <div style={{ maxWidth: 1200, margin: '50px auto', padding: '20px' }}>
-    {user ? <h1>Welcome, {user.name} 👋</h1> : <p>Loading...</p>}
-    <h2>Your Accounts</h2>
-    <AccountList
-      accounts={accounts}
-      transactions={transactions}
-      onAccountClick={handleAccountClick}
-    />
-  </div>
+    <div style={{ maxWidth: 1200, margin: "50px auto", padding: "20px" }}>
+      {user ? <h1>Welcome, {user.name} 👋</h1> : <p>Loading...</p>}
+      <h2>Your Accounts</h2>
+      <AccountList
+        accounts={accounts}
+        transactions={transactions}
+        onAccountClick={handleAccountClick}
+      />
+    </div>
   );
 }

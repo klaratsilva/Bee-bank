@@ -1,18 +1,19 @@
 'use client';
 import { Form, message } from 'antd';
-import { Transaction } from '@/lib/types';
 import dayjs from 'dayjs';
-import { BASE_URL } from '@/server/const';
 
-export default function useAddNewTransactionForm(
+import { BASE_URL } from '@/server/const';
+import type { Transaction, TransactionWithoutId } from '@/lib/types';
+
+export default function useAddTransactionForm(
   accountId: string,
-  onAdd: (tx: Transaction) => void,
+  onAdd: (transaction: Transaction) => void,
   onClose: () => void
 ) {
   const [form] = Form.useForm();
 
-  const handleSubmit = async (values: any) => {
-    const newTransaction: Omit<Transaction, 'id'> = {
+  const handleSubmit = async (values: TransactionWithoutId) => {
+    const newTransaction: TransactionWithoutId = {
       accountId,
       senderReceiver: values.senderReceiver,
       amount: values.amount,
@@ -32,7 +33,7 @@ export default function useAddNewTransactionForm(
       }
 
       const createdTransaction = await res.json();
-      onAdd(createdTransaction); // Send it back to local state
+      onAdd(createdTransaction);
       message.success('Transaction added!');
       onClose();
     } catch (error) {

@@ -1,19 +1,28 @@
-'use client';
+"use client";
 
-import { useState, useMemo } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { Table, Button } from 'antd';
-import dayjs from 'dayjs';
+import { useState, useMemo } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { Table, Button } from "antd";
+import dayjs from "dayjs";
 
-import AddModal from '@/components/modal/AddTransactionModal';
-import useTransactions from './useTransactions';
-import TransactionFilter from './TransactionFilter';
+import AddModal from "@/components/modal/AddTransactionModal";
+import useTransactions from "./useTransactions";
+import TransactionFilter from "./TransactionFilter";
 
 const columns = [
-  { title: 'Date', dataIndex: 'date', key: 'date', render: (date: string) => dayjs(date).format('MMM DD, YYYY'), },
-  { title: 'Amount', dataIndex: 'amount', key: 'amount' },
-  { title: 'Sender / Receiver', dataIndex: 'senderReceiver', key: 'senderReceiver' },
-  { title: 'Message', dataIndex: 'message', key: 'message' },
+  {
+    title: "Date",
+    dataIndex: "date",
+    key: "date",
+    render: (date: string) => dayjs(date).format("MMM DD, YYYY"),
+  },
+  { title: "Amount", dataIndex: "amount", key: "amount" },
+  {
+    title: "Sender / Receiver",
+    dataIndex: "senderReceiver",
+    key: "senderReceiver",
+  },
+  { title: "Message", dataIndex: "message", key: "message" },
 ];
 
 export default function TransactionsPage() {
@@ -36,14 +45,17 @@ export default function TransactionsPage() {
     });
   }, [transactions, accountId, filterDate, filterAmount]);
 
-
   return (
-    <div style={{ maxWidth: 1000, margin: '50px auto', padding: '10px' }}>
+    <div style={{ maxWidth: 1000, margin: "50px auto", padding: "10px" }}>
       <Button onClick={() => router.back()} style={{ marginBottom: 20 }}>
         ← Back
       </Button>
 
-      <Button type="primary" onClick={() => setIsModalOpen(true)} style={{ float: 'right' }}>
+      <Button
+        type="primary"
+        onClick={() => setIsModalOpen(true)}
+        style={{ float: "right" }}
+      >
         + Add Transaction
       </Button>
 
@@ -55,10 +67,10 @@ export default function TransactionsPage() {
       />
 
       <Table
-         columns={columns}
-         dataSource={filteredTransactions}
-         rowKey="id"
-         pagination={{ pageSize: 5 }}
+        columns={columns}
+        dataSource={filteredTransactions}
+        rowKey="id"
+        pagination={{ pageSize: 5 }}
       />
 
       <AddModal

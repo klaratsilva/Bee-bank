@@ -1,6 +1,7 @@
 // components/AccountCard.tsx
-import { Card } from 'antd';
-import { Account } from '@/lib/types';
+import { Card } from "antd";
+
+import type { Account } from "@/lib/types";
 
 interface AccountCardProps {
   account: Account;
@@ -15,10 +16,14 @@ const AccountCard = ({ account, balance, onClick }: AccountCardProps) => {
       onClick={onClick}
       title={account.name}
       extra={<span>{account.type}</span>}
-      style={{ cursor: 'pointer' }}
+      style={{ cursor: "pointer" }}
     >
-      <p><strong>Balance:</strong> ${balance.toLocaleString()}</p>
-      <p><strong>Account Number:</strong> {account.accountNumber}</p>
+      <p>
+        <strong>Balance:</strong> ${balance.toLocaleString()}
+      </p>
+      <p>
+        <strong>Account Number:</strong> {account.accountNumber}
+      </p>
     </Card>
   );
 };

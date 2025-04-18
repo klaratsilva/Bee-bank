@@ -7,7 +7,7 @@ export default function SignUpForm() {
   const { loading, handleSignup } = useSignUpForm();
 
   return (
-    <div style={{ maxWidth: 400, margin: '100px auto', textAlign: 'center' }}>
+    <div style={{ maxWidth: 400, margin: '100px auto', textAlign: 'center', padding: "20px" }}>
       <h2>Sign Up for BeeBank</h2>
       <Form
         layout="vertical"

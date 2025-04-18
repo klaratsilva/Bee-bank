@@ -1,4 +1,3 @@
-
 export interface User {
   userId: number;
   username: string;
@@ -22,3 +21,5 @@ export interface Transaction {
   date: string;
   message: string;
 }
+
+export type TransactionWithoutId = Omit<Transaction, 'id'>

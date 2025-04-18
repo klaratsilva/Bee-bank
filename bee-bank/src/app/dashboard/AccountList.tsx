@@ -1,8 +1,7 @@
-import { Row, Col } from 'antd';
+import { Row, Col } from "antd";
 
 import type { Transaction, Account } from "@/lib/types";
-import AccountCard from './AccountCard';
-
+import AccountCard from "./AccountCard";
 
 interface AccountListProps {
   accounts: Account[];
@@ -10,12 +9,21 @@ interface AccountListProps {
   onAccountClick: (accountId: string) => void;
 }
 
-const AccountList = ({ accounts, transactions, onAccountClick }: AccountListProps) => {
+const AccountList = ({
+  accounts,
+  transactions,
+  onAccountClick,
+}: AccountListProps) => {
   const calculateBalance = (accountId: string) => {
-    const filteredAccount = transactions.filter((transaction) => transaction.accountId === accountId);
-    const balance = filteredAccount.reduce((acc: number, transaction: Transaction) => {
-      return acc + transaction.amount;
-    }, 0);
+    const filteredAccount = transactions.filter(
+      (transaction) => transaction.accountId === accountId
+    );
+    const balance = filteredAccount.reduce(
+      (acc: number, transaction: Transaction) => {
+        return acc + transaction.amount;
+      },
+      0
+    );
 
     return balance;
   };
@@ -26,8 +34,13 @@ const AccountList = ({ accounts, transactions, onAccountClick }: AccountListProp
         const balance = calculateBalance(account.id);
         return (
           <Col
-            xs={24} sm={12} md={8} lg={6} xl={6} key={account.id}
-            style={{ marginBottom: '16px' }}
+            xs={24}
+            sm={12}
+            md={8}
+            lg={6}
+            xl={6}
+            key={account.id}
+            style={{ marginBottom: "16px" }}
           >
             <AccountCard
               account={account}
