@@ -6,6 +6,7 @@ import { BASE_URL } from "@/server/const";
 
 export default function useTransactions(accountId: string) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -17,9 +18,10 @@ export default function useTransactions(accountId: string) {
         setTransactions(data);
       } catch (error) {
         console.error("Failed to fetch transactions:", error);
+      } finally {
+        setLoading(false);
       }
     };
-
     if (accountId) fetchTransactions();
   }, [accountId]);
 
@@ -43,5 +45,5 @@ export default function useTransactions(accountId: string) {
     }
   };
 
-  return { transactions, addTransaction };
+  return { transactions, addTransaction, loading };
 }

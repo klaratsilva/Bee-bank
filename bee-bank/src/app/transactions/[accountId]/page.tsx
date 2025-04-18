@@ -34,7 +34,7 @@ export default function TransactionsPage() {
   const [filterDate, setFilterDate] = useState<string | null>(null);
   const [filterAmount, setFilterAmount] = useState<number | null>(null);
 
-  const { transactions, addTransaction } = useTransactions(accountId);
+  const { transactions, addTransaction, loading } = useTransactions(accountId);
 
   const filteredTransactions = useMemo(() => {
     return transactions.filter((t) => {
@@ -44,6 +44,14 @@ export default function TransactionsPage() {
       return true;
     });
   }, [transactions, accountId, filterDate, filterAmount]);
+
+  if (loading) {
+    return (
+      <div style={{ textAlign: "center", marginTop: 100 }}>
+        <p>Loading transactions...</p>
+      </div>
+    );
+  }
 
   return (
     <div style={{ maxWidth: 1000, margin: "50px auto", padding: "10px" }}>
