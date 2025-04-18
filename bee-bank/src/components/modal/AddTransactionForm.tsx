@@ -8,7 +8,9 @@ import {
   Select,
   FormInstance,
 } from "antd";
+import { useRouter } from "next/navigation";
 
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { BASE_URL } from "@/server/const";
 import type { User, TransactionWithoutId } from "@/lib/types";
 
@@ -21,6 +23,8 @@ interface Props {
 
 export default function AddTransactionForm({ form, onFinish }: Props) {
   const [users, setUsers] = useState<User[]>([]);
+  const currentUser = useCurrentUser();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -36,6 +40,10 @@ export default function AddTransactionForm({ form, onFinish }: Props) {
     fetchUsers();
   }, []);
 
+  const filteredUsers = users.filter(
+    (user) => user.userId !== currentUser?.userId
+  );
+
   return (
     <Form layout="vertical" form={form} onFinish={onFinish}>
       <Form.Item
@@ -44,7 +52,7 @@ export default function AddTransactionForm({ form, onFinish }: Props) {
         rules={[{ required: true, message: "Please select a receiver" }]}
       >
         <Select placeholder="Select Sender/Receiver">
-          {users.map((user) => (
+          {filteredUsers.map((user) => (
             <Option key={user.userId} value={user.name}>
               {user.name}
             </Option>

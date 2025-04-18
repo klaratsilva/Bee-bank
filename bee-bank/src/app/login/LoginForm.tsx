@@ -8,7 +8,7 @@ export default function LoginForm() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <Row justify="center" align="middle" style={{ minHeight: "100vh" }}>
+      <Row justify="center" align="middle" style={{ minHeight: "80vh" }}>
         <Col xs={20} sm={16} md={12} lg={8} xl={6}>
           <div style={{ textAlign: "center" }}>
             <h2>Login to BeeBank</h2>
