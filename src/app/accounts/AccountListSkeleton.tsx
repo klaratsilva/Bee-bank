@@ -1,5 +1,5 @@
 import { Card, Col, Row } from "antd";
-import Skeleton from "@/app/components/Skeleton";
+import Skeleton from "@/components/Skeleton";
 
 const AccountListSkeleton = () => {
   const accounts = [1, 2];

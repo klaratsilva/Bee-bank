@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { User } from "@/lib/types";
@@ -7,7 +9,7 @@ export function useCurrentUser() {
   const router = useRouter();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem("currentUser");
 
     if (!storedUser) {
       router.push("/login");

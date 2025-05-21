@@ -8,11 +8,11 @@ export default function SignUpForm() {
 
   return (
     <div className="max-w-[400px] mx-auto text-center p-5">
-      <h2>Sign Up for BeeBank</h2>
+      <h2 className="text-xl font-bold mb-6">Sign Up for BeeBank</h2>
       <Form
         layout="vertical"
         onFinish={handleSignup}
-        initialValues={{ username: "", password: "", name: "" }}
+        initialValues={{ name: "", username: "", email: "", password: "" }}
       >
         <Form.Item
           label="Full Name"
@@ -28,6 +28,17 @@ export default function SignUpForm() {
           rules={[{ required: true, message: "Please input your username!" }]}
         >
           <Input placeholder="Username" />
+        </Form.Item>
+
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            { required: true, message: "Please input your email!" },
+            { type: "email", message: "Please enter a valid email address!" },
+          ]}
+        >
+          <Input placeholder="Email Address" />
         </Form.Item>
 
         <Form.Item

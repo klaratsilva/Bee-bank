@@ -3,7 +3,7 @@ import { BASE_URL } from "@/server/const";
 
 export async function getAccountWithBalance(account: Account) {
   const transactionsRes = await fetch(
-    `${BASE_URL}/transactions?accountId=${account.id}`
+    `${BASE_URL}/transactions?accountId=${account.accountId}`
   );
   if (!transactionsRes.ok) {
     throw new Error(

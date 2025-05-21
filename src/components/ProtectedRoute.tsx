@@ -12,7 +12,7 @@ export default function ProtectedRoute({
   const router = useRouter();
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const user = localStorage.getItem("currentUser");
 
     if (!user) {
       router.push("/");

@@ -17,7 +17,7 @@ const AccountList = ({ accounts }: AccountListProps) => {
           md={8}
           lg={6}
           xl={6}
-          key={account.id}
+          key={account.accountId}
           className="mb-4"
         >
           <AccountCard account={account} />

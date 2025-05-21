@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getAccountWithBalance } from "./utils/getAccountsWithBalance";
 
 const AccountCard = async ({ account }: { account: Account }) => {
-  const accountId = account.id;
+  const accountId = account.accountId;
   const { computedBalance } = await getAccountWithBalance(account);
 
   return (

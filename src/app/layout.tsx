@@ -1,7 +1,9 @@
 import { BankOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import Image from "next/image";
 
 import "./globals.css";
+import SideBar from "../components/SideBar";
 
 export const metadata = {
   title: "BeeBank",
@@ -16,16 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <header className="flex items-center p-4 border-b border-gray-200">
-          <Link
-            href="/accounts"
-            className="flex items-center gap-3 no-underline"
-          >
-            <BankOutlined className="text-blue-500 text-4xl" />
-            <span className="text-xl font-bold text-blue-500">BeeBank</span>
-          </Link>
-        </header>
-        {children}
+        <main className="flex h-screen w-full font-inter">
+          <SideBar />
+          <div className="flex size-full flex-col">{children}</div>
+        </main>
       </body>
     </html>
   );

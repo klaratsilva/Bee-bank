@@ -1,212 +1,160 @@
 {
   "users": [
     {
-      "userId": 1,
-      "username": "klara",
-      "password": "123456",
-      "name": "Klara Wonderland",
-      "id": "9144"
-    },
-    {
-      "userId": 2,
-      "username": "bob",
-      "password": "abcdefg",
-      "name": "Bob Builder",
-      "id": "6067"
-    },
-    {
-      "id": "3593",
-      "username": "Johny",
-      "password": "123456",
-      "name": "John Doe"
-    },
-    {
-      "id": "0db2",
-      "username": "robo",
-      "password": "robo@gmail.com",
-      "name": "robert"
-    },
-    {
-      "id": "ba7a",
+      "id": "e618",
+      "userId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
       "username": "ksilva",
-      "password": "vesela@gmail.com",
-      "name": "Klara Silva"
+      "password": "12345678",
+      "name": "Klara Silva",
+      "email": "sim@gmail.com"
+    },
+    {
+      "id": "e765",
+      "userId": "d4e3f2a1b0",
+      "username": "Bob",
+      "password": "12345678",
+      "name": "Bob Builder",
+      "email": "bob@gmail.com"
     }
   ],
   "accounts": [
     {
-      "id": "1",
-      "name": "savings",
+      "accountId": "acc1001",
+      "userId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "name": "Klara Savings",
       "type": "savings",
-      "accountNumber": "123-456"
+      "accountNumber": "100-001"
     },
     {
-      "id": "2",
-      "name": "business",
-      "type": "current",
-      "accountNumber": "789-012"
+      "accountId": "acc1002",
+      "userId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "name": "Klara Checking",
+      "type": "checking",
+      "accountNumber": "100-002"
+    },
+    {
+      "accountId": "acc2001",
+      "userId": "d4e3f2a1b0",
+      "name": "Bob Savings",
+      "type": "savings",
+      "accountNumber": "200-001"
+    },
+    {
+      "accountId": "acc2002",
+      "userId": "d4e3f2a1b0",
+      "name": "Bob Checking",
+      "type": "checking",
+      "accountNumber": "200-002"
     }
   ],
   "transactions": [
     {
-      "id": "t1",
-      "accountId": "1",
-      "senderReceiver": "Bob Builder",
-      "amount": 200,
-      "date": "2024-04-15",
-      "message": "Payment for groceries"
+      "id": "tx001",
+      "senderAccountId": "acc1001",
+      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "sender": "Klara Wonderland",
+      "receiverUserId": "d4e3f2a1b0",
+      "receiver": "Bob Builder",
+      "receiverAccountId": "acc2001",
+      "amount": 250,
+      "date": "2024-05-01",
+      "message": "Transfer to Bob's savings"
     },
     {
-      "id": "t2",
-      "accountId": "1",
-      "senderReceiver": "Alice Wonderland",
+      "id": "tx002",
+      "senderAccountId": "acc1002",
+      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "sender": "Klara Wonderland",
+      "receiverUserId": "d4e3f2a1b0",
+      "receiver": "Bob Builder",
+      "receiverAccountId": "acc2002",
+      "amount": 100,
+      "date": "2024-05-02",
+      "message": "Transfer to Bob's checking"
+    },
+    {
+      "id": "tx002",
+      "senderAccountId": "acc1002",
+      "senderUserId": "a9f8b7c6dcfff",
+      "sender": "Test",
+      "receiverUserId": "d4e3f2a1b0",
+      "receiver": "Bob Builder",
+      "receiverAccountId": "acc2002",
+      "amount": 100,
+      "date": "2024-05-02",
+      "message": "Transfer to Bob's checking"
+    },
+    {
+      "id": "tx003",
+      "senderAccountId": "acc2001",
+      "senderUserId": "d4e3f2a1b0",
+      "sender": "Bob Builder",
+      "receiverUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "receiver": "Klara Wonderland",
+      "receiverAccountId": "acc1001",
+      "amount": 300,
+      "date": "2024-05-03",
+      "message": "Return transfer to Klara's savings"
+    },
+    {
+      "id": "tx004",
+      "senderAccountId": "acc2002",
+      "senderUserId": "d4e3f2a1b0",
+      "sender": "Bob Builder",
+      "receiverUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "receiver": "Klara Wonderland",
+      "receiverAccountId": "acc1002",
+      "amount": 150,
+      "date": "2024-05-04",
+      "message": "Return transfer to Klara's checking"
+    },
+    {
+      "id": "tx005",
+      "senderAccountId": "acc1001",
+      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "sender": "Klara Wonderland",
+      "receiverUserId": "d4e3f2a1b0",
+      "receiver": "Bob Builder",
+      "receiverAccountId": "acc2002",
+      "amount": 75,
+      "date": "2024-05-05",
+      "message": "Small transfer to Bob's checking"
+    },
+    {
+      "id": "9a52",
+      "senderAccountId": "acc1001",
+      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "sender": "Klara Silva",
+      "receiverUserId": "d4e3f2a1b0",
+      "receiver": "",
+      "receiverAccountId": "",
+      "amount": 50,
+      "date": "2025-05-21",
+      "message": "rent"
+    },
+    {
+      "id": "f0d8",
+      "senderAccountId": "acc1002",
+      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "sender": "Klara Silva",
+      "receiverUserId": "d4e3f2a1b0",
+      "receiver": "",
+      "receiverAccountId": "",
       "amount": 500,
-      "date": "2024-04-10",
-      "message": "Salary"
+      "date": "2025-05-21",
+      "message": "food"
     },
     {
-      "id": "t3",
-      "accountId": "1",
-      "senderReceiver": "Electric Company",
-      "amount": 120,
-      "date": "2024-04-01",
-      "message": "Electricity bill"
-    },
-    {
-      "id": "t4",
-      "accountId": "1",
-      "senderReceiver": "Internet Provider",
-      "amount": 80,
-      "date": "2024-03-28",
-      "message": "Monthly internet"
-    },
-    {
-      "id": "t5",
-      "accountId": "2",
-      "senderReceiver": "Client A",
-      "amount": 3000,
-      "date": "2024-04-14",
-      "message": "Project payment"
-    },
-    {
-      "id": "t6",
-      "accountId": "2",
-      "senderReceiver": "Office Supplies Ltd.",
-      "amount": 450,
-      "date": "2024-04-05",
-      "message": "Office chairs"
-    },
-    {
-      "id": "t7",
-      "accountId": "2",
-      "senderReceiver": "Tax Agency",
-      "amount": 1300,
-      "date": "2024-03-30",
-      "message": "Quarterly tax payment"
-    },
-    {
-      "id": "493c397b-9e68-4a9b-9cc2-893f70fe8eae",
-      "accountId": "1",
-      "senderReceiver": "Klara Wonderland",
-      "amount": 500,
-      "date": "2025-04-08",
-      "message": "hello"
-    },
-    {
-      "id": "14b542d3-e190-4e9b-92eb-e938c36e39e9",
-      "accountId": "2",
-      "senderReceiver": "Bob Builder",
-      "amount": 2222,
-      "date": "2025-04-16",
-      "message": "33333"
-    },
-    {
-      "id": "15b18968-642e-4f2f-a05a-913878c3da3b",
-      "accountId": "1",
-      "senderReceiver": "Klara Wonderland",
-      "amount": 23,
-      "date": "2025-04-04",
-      "message": "3333"
-    },
-    {
-      "id": "d6bb",
-      "accountId": "1",
-      "senderReceiver": "Klara Wonderland",
-      "amount": 5000,
-      "date": "2025-04-17",
-      "message": "hellll"
-    },
-    {
-      "id": "774cbf60-68b4-4640-88f8-f8e2dee081ba",
-      "accountId": "1",
-      "senderReceiver": "Klara Wonderland",
-      "amount": 5000,
-      "date": "2025-04-17",
-      "message": "hellll"
-    },
-    {
-      "id": "88f0",
-      "accountId": "1",
-      "senderReceiver": "Bob Builder",
-      "amount": 34,
-      "date": "2025-04-16",
-      "message": "ffff"
-    },
-    {
-      "id": "f831cd72-0600-487b-800a-6924cafd3f97",
-      "accountId": "1",
-      "senderReceiver": "Bob Builder",
-      "amount": 345,
-      "date": "2025-04-16",
-      "message": "jeans"
-    },
-    {
-      "id": "2b26",
-      "accountId": "1",
-      "senderReceiver": "Bob Builder",
-      "amount": 23,
-      "date": "2025-05-07",
-      "message": "transaction for a gift"
-    },
-    {
-      "id": "4fe8",
-      "accountId": "1",
-      "senderReceiver": "Bob Builder",
-      "amount": 34,
-      "date": "2025-05-06",
-      "message": "hello"
-    },
-    {
-      "id": "704e",
-      "accountId": "1",
-      "senderReceiver": "Bob Builder",
-      "amount": 33,
-      "date": "2025-05-06",
-      "message": "3333"
-    },
-    {
-      "id": "8520",
-      "accountId": "1",
-      "senderReceiver": "Bob Builder",
-      "amount": 23,
-      "date": "2025-05-06",
-      "message": "hello"
-    },
-    {
-      "id": "47e3",
-      "accountId": "1",
-      "senderReceiver": "Bob Builder",
-      "amount": 4,
-      "date": "2025-05-11",
-      "message": "www"
-    },
-    {
-      "id": "43db",
-      "accountId": "1",
-      "senderReceiver": "Bob Builder",
-      "amount": 5,
-      "date": "2025-05-11",
-      "message": "New payment for Bob"
+      "id": "cc39",
+      "senderAccountId": "acc1001",
+      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "sender": "Klara Silva",
+      "receiverUserId": "d4e3f2a1b0",
+      "receiver": "Bob Builder",
+      "receiverAccountId": "acc2002",
+      "amount": 600,
+      "date": "2025-05-21",
+      "message": "eeee"
     }
   ]
 }
