@@ -1,77 +1,54 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Go_VyaIE)
-# 🧪 Senior Frontend Engineer Technical Assignment
-## "Banking Dashboard Web App"
-### 🧠 Objective
-Build a simple Banking Web Application (called BeeBank) with the following features:
+# 🐝 BeeBank
 
-- User Login / Authentication
-- Dashboard showing:
-  - List of Bank Accounts
-    - ```typescript
-      interface IAccount {
-        id: string;
-        name: string;
-        balance: number;
-        type: 'current' | 'savings';
-        accountNumber: string;
-      }
-      ```
-  - List of Transactions per Account 
-    - Transaction Date
-    - Transaction Amount
-    - Sender / Receiver
-  - Ability to add a new transaction 
-    - Create a simple UI for adding a transaction with Form-validation
-    - Receiver / Sender (dropdown)
-    - Transaction Amount
-    - Transaction Date
-    - Transaction Message
-  - Ability to filter transactions by date or amount
+A minimalistic banking app built with **Next.js 13+**, **Ant Design**, and **JSON Server**. Users can sign up, log in, view accounts and transactions, and add new ones with a responsive and clean UI.
 
-### 📦 Backend
-You can choose one of the following options for the backend:
+---
 
-- Use a Headless CMS like Strapi or Sanity 
-- A custom JSON API using something like JSON Server / Express 
-- A static JSON file if you prefer a simplified approach
+## 🚀 Features
 
-Use whatever backend stack you're most comfortable with, as long as it's functional and allows the frontend to interact with the data in a realistic way.
+- User authentication (signup + login)
+- Account listing and transactions
+- Add new transactions with form validation
+- Form logic separated using custom hooks
+- `json-server` used as a mock RESTful backend
+- LocalStorage fallback and session persistence
 
+---
 
-### 💻 Frontend Requirements
-- Use React or Next.js in combination with TypeScript
-- Clean UI/UX (you can use any UI library like Material-UI, Ant Design, etc. or don't use any at all and style via CSS/SASS)
-- State management (your choice: React Context, Redux, Zustand, etc.)
-- Form validation for transactions 
-- List view for transactions with sorting or filtering 
-- Responsive and accessible design
-- Code should be clean, modular, and easy to read
+## 🛠️ Technologies
 
-✅ Bonus: Use of server components (if using Next.js 13+ with App Router)
+- [Next.js 13/14+ (App Router)](https://nextjs.org/)
+- [Ant Design](https://ant.design/)
+- [JSON Server](https://github.com/typicode/json-server)
+- [Zod](https://github.com/colinhacks/zod) for schema validation
+- [Day.js](https://day.js.org/) for date formatting
 
+---
 
-### 🧪 Evaluation Criteria
-- Code quality: modularity, readability, reusability 
-- Best practices: hooks, components, file structure, naming 
-- State management: clear flow, proper usage of state 
-- UX/UI: logical layout, responsiveness, usability 
-- Performance: use of async patterns, memoization, etc.
+## Install dependencies
 
+Navigate to the project directory and install the dependencies:
 
-### 🚀 How to Deliver
-- Push the project to a GitHub repo and share the link 
-- Include a README with:
-  - Short description of your approach
-  - How to run the project locally 
-  - Assumptions or tradeoffs made
-  - Time spent on the project
-- Nice to have: Deploy a working version it via Vercel or Netlify and share the link
+cd bee-bank
+npm install
 
-### ⏰ Estimated Time
-Spend as much time as you feel is necessary to demonstrate your skills, but don't spend more than 4-6 hours on this assignment.
-It's not necessary to complete the entire project, but please make sure to include enough functionality to showcase your abilities.
-Don't overengineer the solution; focus on quality over quantity.
+Start the JSON server
+npm run api
 
-### ❗️ Important Notes
-- This is a technical assignment, so focus on the code quality and best practices.
-- You can use AI tools to assist you, but please make sure to understand the code and be able to explain it, as your skills are what we are evaluating.
+Start the Frontend Application
+npm run dev
+
+## Assumptions or Tradeoffs Made
+
+- No Persistent Backend: The project uses JSON Server for mock data, which is not a real backend. In a production environment, a real backend with a database would be necessary.
+
+- No External State Management: The application does not use an external state management tool. Instead, it relies on React's built-in `useState` and `useEffect` hooks for managing component state. Given the simplicity of the app and the relatively low volume of data being managed, introducing an external state management solution would add unnecessary complexity. In a larger, more complex application, a state management tool could be beneficial for better scalability and maintainability.
+
+- No Error Boundaries: The application does not currently use error boundaries for graceful error handling. In a production environment, handling unexpected errors would be essential.
+
+- No Unit Testing: There are no unit tests implemented. Testing frameworks like Jest and React Testing Library could be integrated for better code quality and reliability.
+
+## Time spent
+
+The project was developed with the aim to build the functionality and demonstrating essential skills.
+time spent was approximately **6 hours**.
