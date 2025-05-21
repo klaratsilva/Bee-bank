@@ -62,7 +62,7 @@ export default function useSignUpForm() {
       localStorage.setItem('user', JSON.stringify(createdUser));
 
       message.success('Registration successful!');
-      router.push('/dashboard');
+      router.push('/accounts');
     } catch (error) {
       console.error(error);
       message.error('Something went wrong during signup');

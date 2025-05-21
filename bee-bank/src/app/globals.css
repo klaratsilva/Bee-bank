@@ -1,6 +1,12 @@
+/* globals.css */
+@import "tailwindcss";
+import '@ant-design/v5-patch-for-react-19'
+
+@tailwind utilities;
+
+
 body {
   font-family: sans-serif;
-  background-color: #f9fafb;
   margin: 0;
   padding: 0;
 }

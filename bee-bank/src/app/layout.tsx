@@ -16,29 +16,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <header
-          style={{
-            display: "flex",
-            alignItems: "center",
-            padding: "10px 20px",
-            borderBottom: "1px solid #eee",
-          }}
-        >
+        <header className="flex items-center p-4 border-b border-gray-200">
           <Link
-            href="/"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "10px",
-              textDecoration: "none",
-            }}
+            href="/accounts"
+            className="flex items-center gap-3 no-underline"
           >
-            <BankOutlined style={{ fontSize: "32px", color: "#1890ff" }} />
-            <span
-              style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#222" }}
-            >
-              BeeBank
-            </span>
+            <BankOutlined className="text-blue-500 text-4xl" />
+            <span className="text-xl font-bold text-blue-500">BeeBank</span>
           </Link>
         </header>
         {children}

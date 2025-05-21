@@ -1,28 +1,30 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { TransactionWithoutId, User } from "@/lib/types";
+import { BASE_URL } from "@/server/const";
 import {
+  Button,
+  DatePicker,
   Form,
   Input,
   InputNumber,
-  DatePicker,
+  message,
   Select,
-  FormInstance,
 } from "antd";
+import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
-
-import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { BASE_URL } from "@/server/const";
-import type { User, TransactionWithoutId } from "@/lib/types";
+import { useEffect, useState } from "react";
 
 const { Option } = Select;
 
 interface Props {
-  form: FormInstance;
-  onFinish: (values: TransactionWithoutId) => void;
+  accountId: string;
 }
 
-export default function AddTransactionForm({ form, onFinish }: Props) {
+export default function AddTransactionForm({ accountId }: Props) {
+  const [form] = Form.useForm();
   const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(false);
   const currentUser = useCurrentUser();
   const router = useRouter();
 
@@ -44,8 +46,41 @@ export default function AddTransactionForm({ form, onFinish }: Props) {
     (user) => user.userId !== currentUser?.userId
   );
 
+  const handleSubmit = async (values: TransactionWithoutId) => {
+    const newTransaction = {
+      accountId,
+      senderReceiver: values.senderReceiver,
+      amount: values.amount,
+      date: dayjs(values.date).format("YYYY-MM-DD"),
+      message: values.message,
+    };
+
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${BASE_URL}/transactions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newTransaction),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to create transaction");
+      }
+
+      const createdTransaction = await res.json();
+      message.success("Transaction added!");
+      router.push(`/accounts/${accountId}/transactions`);
+    } catch (error) {
+      console.error(error);
+      message.error("Error adding transaction");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <Form layout="vertical" form={form} onFinish={onFinish}>
+    <Form layout="vertical" form={form} onFinish={handleSubmit}>
       <Form.Item
         label="Receiver"
         name="senderReceiver"
@@ -68,11 +103,7 @@ export default function AddTransactionForm({ form, onFinish }: Props) {
           { type: "number", min: 1, message: "Amount must be greater than 0" },
         ]}
       >
-        <InputNumber
-          style={{ width: "100%" }}
-          placeholder="Enter amount"
-          min={1}
-        />
+        <InputNumber className="w-full" placeholder="Enter amount" min={1} />
       </Form.Item>
 
       <Form.Item
@@ -81,7 +112,7 @@ export default function AddTransactionForm({ form, onFinish }: Props) {
         rules={[{ required: true, message: "Please select a date" }]}
       >
         <DatePicker
-          style={{ width: "100%" }}
+          className="w-full"
           placeholder="Select date"
           format="YYYY-MM-DD"
         />
@@ -94,6 +125,10 @@ export default function AddTransactionForm({ form, onFinish }: Props) {
       >
         <Input.TextArea rows={3} placeholder="Enter transaction message" />
       </Form.Item>
+
+      <Button type="primary" htmlType="submit" loading={loading}>
+        Add Transaction
+      </Button>
     </Form>
   );
 }

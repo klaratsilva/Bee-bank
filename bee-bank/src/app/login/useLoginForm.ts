@@ -31,7 +31,7 @@ export default function useLoginForm() {
         const user = users[0];
         localStorage.setItem('user', JSON.stringify(user));
         message.success('Login successful!');
-        router.push('/dashboard');
+        router.push('/accounts');
       } else {
         message.error('Invalid credentials');
       }

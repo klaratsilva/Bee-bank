@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import { Form, Input, Button } from 'antd';
-import useSignUpForm from './useSignUpForm'
+import { Form, Input, Button } from "antd";
+import useSignUpForm from "./useSignUpForm";
 
 export default function SignUpForm() {
   const { loading, handleSignup } = useSignUpForm();
 
   return (
-    <div style={{ maxWidth: 400, margin: '100px auto', textAlign: 'center', padding: "20px" }}>
+    <div className="max-w-[400px] mx-auto text-center p-5">
       <h2>Sign Up for BeeBank</h2>
       <Form
         layout="vertical"
         onFinish={handleSignup}
-        initialValues={{ username: '', password: '', name: '' }}
+        initialValues={{ username: "", password: "", name: "" }}
       >
         <Form.Item
           label="Full Name"
           name="name"
-          rules={[{ required: true, message: 'Please input your full name!' }]}
+          rules={[{ required: true, message: "Please input your full name!" }]}
         >
           <Input placeholder="Full Name" />
         </Form.Item>
@@ -25,7 +25,7 @@ export default function SignUpForm() {
         <Form.Item
           label="Username"
           name="username"
-          rules={[{ required: true, message: 'Please input your username!' }]}
+          rules={[{ required: true, message: "Please input your username!" }]}
         >
           <Input placeholder="Username" />
         </Form.Item>
@@ -34,8 +34,8 @@ export default function SignUpForm() {
           label="Password"
           name="password"
           rules={[
-            { required: true, message: 'Please input your password!' },
-            { min: 6, message: 'Password should be at least 6 characters' },
+            { required: true, message: "Please input your password!" },
+            { min: 6, message: "Password should be at least 6 characters" },
           ]}
         >
           <Input.Password placeholder="Password" />

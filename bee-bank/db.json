@@ -19,20 +19,30 @@
       "username": "Johny",
       "password": "123456",
       "name": "John Doe"
+    },
+    {
+      "id": "0db2",
+      "username": "robo",
+      "password": "robo@gmail.com",
+      "name": "robert"
+    },
+    {
+      "id": "ba7a",
+      "username": "ksilva",
+      "password": "vesela@gmail.com",
+      "name": "Klara Silva"
     }
   ],
   "accounts": [
     {
       "id": "1",
-      "name": "Main Savings",
-      "balance": 4200,
+      "name": "savings",
       "type": "savings",
       "accountNumber": "123-456"
     },
     {
       "id": "2",
-      "name": "Business Account",
-      "balance": 10000,
+      "name": "business",
       "type": "current",
       "accountNumber": "789-012"
     }
@@ -149,6 +159,54 @@
       "amount": 345,
       "date": "2025-04-16",
       "message": "jeans"
+    },
+    {
+      "id": "2b26",
+      "accountId": "1",
+      "senderReceiver": "Bob Builder",
+      "amount": 23,
+      "date": "2025-05-07",
+      "message": "transaction for a gift"
+    },
+    {
+      "id": "4fe8",
+      "accountId": "1",
+      "senderReceiver": "Bob Builder",
+      "amount": 34,
+      "date": "2025-05-06",
+      "message": "hello"
+    },
+    {
+      "id": "704e",
+      "accountId": "1",
+      "senderReceiver": "Bob Builder",
+      "amount": 33,
+      "date": "2025-05-06",
+      "message": "3333"
+    },
+    {
+      "id": "8520",
+      "accountId": "1",
+      "senderReceiver": "Bob Builder",
+      "amount": 23,
+      "date": "2025-05-06",
+      "message": "hello"
+    },
+    {
+      "id": "47e3",
+      "accountId": "1",
+      "senderReceiver": "Bob Builder",
+      "amount": 4,
+      "date": "2025-05-11",
+      "message": "www"
+    },
+    {
+      "id": "43db",
+      "accountId": "1",
+      "senderReceiver": "Bob Builder",
+      "amount": 5,
+      "date": "2025-05-11",
+      "message": "New payment for Bob"
     }
   ]
 }
