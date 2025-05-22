@@ -30,7 +30,6 @@ export interface Transaction {
 
 export type TransactionWithoutId = Omit<Transaction, 'id'>
 
-
 export interface SiderbarProps {
   user: User;
 }
@@ -40,5 +39,8 @@ export interface HeaderBoxProps {
   type?: "title" | "greeting";
   title: string;
   subtext: string;
+}
 
+export interface TotlaBalanceBoxProps {
+  accounts: Account[];
 }

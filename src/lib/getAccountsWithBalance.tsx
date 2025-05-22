@@ -10,16 +10,25 @@ export async function getAccountWithBalance(account: Account) {
   }
 
   const transactions: Transaction[] = await transactionsRes.json();
-
+  console.log(transactions, "transactions");
   const filteredAccountTransactions = transactions.filter(
     (tx: Transaction) =>
       tx.senderAccountId === account.accountId ||
       tx.receiverAccountId === account.accountId
   );
-
+  console.log(
+    filteredAccountTransactions,
+    "filteredAccountTransactions",
+    account.accountId
+  );
   const computedBalance = filteredAccountTransactions.reduce(
     (total, transaction) => {
-      return total + transaction.amount;
+      if (transaction.receiverAccountId === account.accountId) {
+        return total + transaction.amount; // incoming: +
+      } else if (transaction.senderAccountId === account.accountId) {
+        return total - transaction.amount; // outgoing: -
+      }
+      return total; // fallback, shouldn't happen if filtered properly
     },
     0
   );

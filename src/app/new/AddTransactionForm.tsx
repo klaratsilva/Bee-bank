@@ -1,29 +1,39 @@
 "use client";
+
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { Account, TransactionWithoutId, User } from "@/lib/types";
 import { BASE_URL } from "@/server/const";
-import {
-  Button,
-  DatePicker,
-  Form,
-  Input,
-  InputNumber,
-  message,
-  Select,
-} from "antd";
+import { useForm, Controller } from "react-hook-form";
+import { DatePicker, Select, message, Input } from "antd";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const { Option } = Select;
 
+type FormValues = {
+  senderAccountId: string;
+  receiver: string;
+  receiverAccountId: string;
+  amount: number;
+  date: dayjs.Dayjs;
+  message: string;
+};
+
 export default function AddTransactionForm() {
-  const [form] = Form.useForm();
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = useForm<FormValues>();
+  const user = useCurrentUser();
+  const router = useRouter();
+
   const [users, setUsers] = useState<User[]>([]);
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [loading, setLoading] = useState(false);
-  const user = useCurrentUser();
-  const router = useRouter();
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -48,38 +58,21 @@ export default function AddTransactionForm() {
     fetchInitialData();
   }, []);
 
-  // Sender accounts: only current user's
   const senderAccounts = accounts.filter(
     (acct) => acct.userId === user?.userId
   );
 
-  // Users excluding current
-  const receiverUsers = users.filter((u) => u.userId !== user?.userId);
-
-  // Selected receiver to get their accounts
-  const selectedReceiverId = form.getFieldValue("receiverUserId");
-  const receiverAccounts = accounts.filter(
-    (acct) => acct.userId === selectedReceiverId
-  );
-
-  const handleSubmit = async (values: {
-    senderAccountId: string;
-    receiver: string;
-    receiverAccountId: string;
-    amount: number;
-    date: dayjs;
-    message: string;
-  }) => {
+  const onSubmit = async (data: FormValues) => {
     const newTransaction: TransactionWithoutId = {
-      senderAccountId: values.senderAccountId,
+      senderAccountId: data.senderAccountId,
       senderUserId: user!.userId,
       sender: user!.name,
-      receiverUserId: "d4e3f2a1b0",
-      receiver: values.receiver,
-      receiverAccountId: values.receiverAccountId,
-      amount: values.amount,
-      date: dayjs(values.date).format("YYYY-MM-DD"),
-      message: values.message,
+      receiverUserId: "d4e3f2a1b0", // hardcoded — you can make this dynamic
+      receiver: data.receiver,
+      receiverAccountId: data.receiverAccountId,
+      amount: data.amount,
+      date: data.date.format("YYYY-MM-DD"),
+      message: data.message,
     };
 
     setLoading(true);
@@ -89,10 +82,11 @@ export default function AddTransactionForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newTransaction),
       });
+
       if (!res.ok) throw new Error("Failed to create transaction");
 
       message.success("Transaction added!");
-      router.push(`/accounts/${values.senderAccountId}/transactions`);
+      router.push(`/accounts/${data.senderAccountId}/transactions`);
     } catch (error) {
       console.error(error);
       message.error("Error adding transaction");
@@ -102,71 +96,131 @@ export default function AddTransactionForm() {
   };
 
   return (
-    <Form
-      layout="vertical"
-      form={form}
-      onFinish={handleSubmit}
-      onValuesChange={() => {
-        form.validateFields(["receiverAccountId"]);
-      }}
-    >
-      <Form.Item
-        label="Sender Account"
-        name="senderAccountId"
-        rules={[{ required: true, message: "Select your account" }]}
-      >
-        <Select placeholder="Select sender account">
-          {senderAccounts.map((acct) => (
-            <Option key={acct.accountId} value={acct.accountId}>
-              {acct.name}
-            </Option>
-          ))}
-        </Select>
-      </Form.Item>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
+      <div>
+        <label className="block text-sm font-medium text-gray-600 mb-1">
+          Sender Account
+        </label>
+        <Controller
+          name="senderAccountId"
+          control={control}
+          rules={{ required: "Select your account" }}
+          render={({ field }) => (
+            <Select
+              {...field}
+              placeholder="Select sender account"
+              className="w-full"
+            >
+              {senderAccounts.map((acct) => (
+                <Option key={acct.accountId} value={acct.accountId}>
+                  {acct.name}
+                </Option>
+              ))}
+            </Select>
+          )}
+        />
+        {errors.senderAccountId && (
+          <span className="text-red-500">{errors.senderAccountId.message}</span>
+        )}
+      </div>
 
-      <Form.Item
-        label="Receiver Name"
-        name="receiver"
-        rules={[{ required: true, message: "Enter message" }]}
-      >
-        <Input className="w-full" />
-      </Form.Item>
+      {/* Receiver Name Input */}
+      <div>
+        <label className="block text-sm font-medium text-gray-600 mb-1">
+          Receiver Name
+        </label>
+        <Input
+          {...register("receiver", { required: "Receiver name is required" })}
+          className="w-full border rounded px-3 py-2"
+        />
+        {errors.receiver && (
+          <span className="text-red-500">{errors.receiver.message}</span>
+        )}
+      </div>
 
-      <Form.Item
-        label="Receiver Account Number"
-        name="receiverAccountId"
-        rules={[{ required: true, message: "Enter message" }]}
-      >
-        <Input className="w-full" />
-      </Form.Item>
+      {/* Receiver Account Number Input */}
+      <div>
+        <label className="block text-sm font-medium text-gray-600 mb-1">
+          Receiver Account Number
+        </label>
+        <Input
+          {...register("receiverAccountId", {
+            required: "Receiver account number is required",
+          })}
+          className="w-full border rounded px-3 py-2"
+        />
+        {errors.receiverAccountId && (
+          <span className="text-red-500">
+            {errors.receiverAccountId.message}
+          </span>
+        )}
+      </div>
 
-      <Form.Item
-        label="Amount"
-        name="amount"
-        rules={[{ required: true, message: "Enter amount" }]}
-      >
-        <InputNumber className="w-full" min={1} />
-      </Form.Item>
+      {/* Amount Input */}
+      <div>
+        <label className="block text-sm font-medium text-gray-600 mb-1">
+          Amount
+        </label>
+        <Input
+          type="number"
+          {...register("amount", {
+            required: "Amount is required",
+            valueAsNumber: true,
+            min: { value: 1, message: "Minimum amount is 1" },
+          })}
+          className="w-full border rounded px-3 py-2"
+        />
+        {errors.amount && (
+          <span className="text-red-500">{errors.amount.message}</span>
+        )}
+      </div>
 
-      <Form.Item
-        label="Date"
-        name="date"
-        rules={[{ required: true, message: "Select date" }]}
-      >
-        <DatePicker className="w-full" format="YYYY-MM-DD" />
-      </Form.Item>
+      {/* Date Picker with Controller */}
+      <div>
+        <label className="block text-sm font-medium text-gray-600 mb-1">
+          Date
+        </label>
+        <Controller
+          name="date"
+          control={control}
+          rules={{ required: "Date is required" }}
+          render={({ field }) => (
+            <DatePicker
+              {...field}
+              className="w-full"
+              format="YYYY-MM-DD"
+              onChange={(date) => field.onChange(date)}
+              value={field.value}
+            />
+          )}
+        />
+        {errors.date && (
+          <span className="text-red-500">{errors.date.message}</span>
+        )}
+      </div>
 
-      <Form.Item
-        label="Message"
-        name="message"
-        rules={[{ required: true, message: "Enter message" }]}
-      >
-        <Input.TextArea rows={3} />
-      </Form.Item>
+      {/* Message Textarea */}
+      <div>
+        <label className="block text-sm font-medium text-gray-600 mb-1">
+          Message
+        </label>
+        <Input.TextArea
+          rows={3}
+          {...register("message", { required: "Message is required" })}
+          className="w-full border rounded px-3 py-2"
+        />
+        {errors.message && (
+          <span className="text-red-500">{errors.message.message}</span>
+        )}
+      </div>
 
-      <Button type="primary" htmlType="submit" loading={loading}>
-        Add Transaction
-      </Button>
-    </Form>
+      <button
+        type="submit"
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        disabled={loading}
+      >
+        {loading ? "Adding..." : "Add Transaction"}
+      </button>
+    </form>
   );
 }

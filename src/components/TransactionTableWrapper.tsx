@@ -6,6 +6,36 @@ import TransactionFilter from "./TransactionFilter";
 import { Transaction } from "@/lib/types";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import type { ColumnsType } from "antd/es/table";
+import { cn } from "@/lib/utils";
+
+const AmountBadge = ({
+  amount,
+  isSenderCurrentUser,
+}: {
+  amount: number;
+  isSenderCurrentUser: boolean;
+}) => {
+  const backgroundColor = isSenderCurrentUser
+    ? "bg-red-100"
+    : "bg-lightgreen-100";
+  const textColor = isSenderCurrentUser ? "text-red-800" : "text-green-800";
+  const borderColor = isSenderCurrentUser
+    ? "border-red-300"
+    : "border-green-400";
+
+  return (
+    <div
+      className={cn(
+        "inline-flex items-center rounded-xl text-[12px] px-2 py-[2px] font-medium border",
+        backgroundColor,
+        textColor,
+        borderColor
+      )}
+    >
+      {isSenderCurrentUser ? "-" : ""}${amount}
+    </div>
+  );
+};
 
 const TransactionTableWrapper = ({
   transactions,
@@ -59,15 +89,9 @@ const TransactionTableWrapper = ({
         const isSenderCurrentUser = record.senderUserId === currentUser?.userId;
 
         return (
-          <Badge
-            count={`${isSenderCurrentUser ? "-" : ""}$${record.amount}`}
-            style={{
-              backgroundColor: isSenderCurrentUser ? "#ffccc7" : "#42e873",
-              color: "#000",
-              fontSize: "12px",
-              padding: "0 6px",
-              borderRadius: "6px",
-            }}
+          <AmountBadge
+            amount={record.amount}
+            isSenderCurrentUser={isSenderCurrentUser}
           />
         );
       },
@@ -101,8 +125,8 @@ const TransactionTableWrapper = ({
         rowKey="id"
         rowClassName={(record) =>
           record.senderUserId === currentUser?.userId
-            ? "no-hover bg-[#fff1f0]"
-            : "no-hover bg-[#e2fcde]"
+            ? "no-hover bg-[#fffafa]"
+            : "no-hover bg-[#f7fef6]"
         }
         pagination={false}
       />
