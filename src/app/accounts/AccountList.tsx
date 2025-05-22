@@ -1,16 +1,28 @@
+"use client";
 import { Col, Row } from "antd";
 
 import type { Account } from "@/lib/types";
 import AccountCard from "./AccountCard";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 
 interface AccountListProps {
   accounts: Account[];
 }
 
 const AccountList = ({ accounts }: AccountListProps) => {
+  const user = useCurrentUser();
+
+  if (user === null) {
+    return <div>Loading your accounts…</div>;
+  }
+
+  // Filter accounts for current user only
+  const userAccounts = accounts.filter(
+    (account) => account.userId === user?.userId
+  );
   return (
     <Row gutter={[16, 16]}>
-      {accounts.map((account) => (
+      {userAccounts.map((account) => (
         <Col
           xs={24}
           sm={12}

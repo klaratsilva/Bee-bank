@@ -1,3 +1,4 @@
+import HeaderBox from "@/components/HeaderBox";
 import AddTransactionForm from "./AddTransactionForm"; // Adjust the path based on where you save the client-side form
 
 interface Props {
@@ -11,8 +12,10 @@ export default async function AddTransactionPage({ params }: Props) {
 
   return (
     <div style={{ maxWidth: 800, padding: "60px" }}>
-      <h1>Add Transaction for Account {accountId}</h1>
-      <AddTransactionForm />
+      <HeaderBox title="Create a new Transaction" subtext={""} />
+      <div className="mt-10">
+        <AddTransactionForm />
+      </div>
     </div>
   );
 }

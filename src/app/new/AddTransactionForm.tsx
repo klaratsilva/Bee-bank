@@ -70,14 +70,7 @@ export default function AddTransactionForm() {
     date: dayjs;
     message: string;
   }) => {
-    const newTransaction: Omit<TransactionWithoutId, "id"> & {
-      senderAccountId: string;
-      senderUserId: string;
-      sender: string;
-      receiverUserId: string;
-      receiver: string;
-      receiverAccountId: string;
-    } = {
+    const newTransaction: TransactionWithoutId = {
       senderAccountId: values.senderAccountId,
       senderUserId: user!.userId,
       sender: user!.name,
@@ -132,7 +125,7 @@ export default function AddTransactionForm() {
       </Form.Item>
 
       <Form.Item
-        label="Receiver User"
+        label="Receiver Name"
         name="receiver"
         rules={[{ required: true, message: "Enter message" }]}
       >
@@ -140,7 +133,7 @@ export default function AddTransactionForm() {
       </Form.Item>
 
       <Form.Item
-        label="Receiver Account"
+        label="Receiver Account Number"
         name="receiverAccountId"
         rules={[{ required: true, message: "Enter message" }]}
       >

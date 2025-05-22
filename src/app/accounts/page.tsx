@@ -18,23 +18,15 @@ export default async function Accounts() {
 
   const accounts: Account[] = await accountsRes.json();
 
-  const curentUserId = "734f87b6-93ae-419d-b879-a6e4f6ae13b9";
-
-  // Filter accounts for current user only
-  const userAccounts = accounts.filter(
-    (account) => account.userId === curentUserId
-  );
-
   return (
     <section className="no-scrollbar flex w-full flex-row max-xl:max-h-screen max-xl:overflow-y-scroll">
       <div className="no-scrollbar flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll;">
         <HeaderBox
-          type="greeting"
-          title="Welcome,"
-          subtext={"Manage your accounts and transactions efficiently"}
+          title="Your accounts:"
+          subtext={"See list of your accounts"}
         />
-        <h2 className="text-xl font-bold  mb-5">Your Accounts: </h2>
-        <AccountList accounts={userAccounts} />
+
+        <AccountList accounts={accounts} />
       </div>
     </section>
   );
