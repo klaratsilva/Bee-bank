@@ -7,11 +7,11 @@ export default function LoginForm() {
   const { handleLogin } = useLoginForm();
 
   return (
-    <div style={{ padding: "20px" }}>
-      <Row justify="center" align="middle" style={{ minHeight: "80vh" }}>
+    <div className="p-20">
+      <Row justify="center" align="middle" className="min-h-[80vh]">
         <Col xs={20} sm={16} md={12} lg={8} xl={6}>
-          <div style={{ textAlign: "center" }}>
-            <h2>Login to BeeBank</h2>
+          <div className="text-center">
+            <h2 className="text-xl font-bold mb-6">Login to BeeBank</h2>
             <Form
               name="login"
               onFinish={handleLogin}
@@ -39,17 +39,14 @@ export default function LoginForm() {
               </Form.Item>
 
               <Form.Item>
-                <Button type="primary" htmlType="submit" block>
+                <Button className="mt-4" type="primary" htmlType="submit" block>
                   Login
                 </Button>
               </Form.Item>
             </Form>
-            <div style={{ marginTop: "10px" }}>
+            <div className="mt-2.5">
               <span>Don't have an account? </span>
-              <a
-                href="/signup"
-                style={{ color: "#007bff", textDecoration: "none" }}
-              >
+              <a href="/signup" className="no-underline text-[#007bff]">
                 Sign Up
               </a>
             </div>

@@ -10,12 +10,23 @@ import { usePathname } from "next/navigation";
 import { SiderbarProps } from "@/lib/types";
 import { Button, Drawer } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
+import { message } from "antd";
 
 const SideBar = () => {
   const pathname = usePathname();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const router = useRouter();
+
+  const handleLogOut = () => {
+    console.log("logout");
+    localStorage.removeItem("currentUser");
+
+    router.push("/login"); // Or wherever your login page is
+  };
+
   const sidebarContent = (
-    <nav className="flex flex-col gap-4 p-4">
+    <nav className="flex flex-col gap-4 p-4 ">
       <Link href="/" className="mb-12 cursor-pointer flex items-center gap-2">
         <Image
           src="/logo.png"
@@ -24,7 +35,7 @@ const SideBar = () => {
           height={54}
           className="size-[54px] max-xl:size-14"
         />
-        <h1 className="2xl:text-26 text-gray-900 font-ibm-plex-serif text-[22px] font-light text-black-1 max-xl:hidden">
+        <h1 className="2xl:text-26 text-blue-500 font-ibm-plex-serif text-[22px] font-bold text-black-1 max-xl:hidden">
           Bee-Bank
         </h1>
       </Link>
@@ -71,6 +82,17 @@ const SideBar = () => {
       {/* Desktop sidebar */}
       <section className="sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-200 bg-white pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px]">
         {sidebarContent}
+        <footer
+          className="flex cursor-pointer items-center  gap-3 py-1 md:p-3 2xl:p-4 rounded-sm justify-center text-gray-500 "
+          onClick={handleLogOut}
+        >
+          <div className="relative size-6">
+            <Image src="icons/logout.svg" fill alt="logout" />
+          </div>{" "}
+          <h1 className="text-14 truncate text-gray-500 font-semibold">
+            Log out
+          </h1>
+        </footer>
       </section>
 
       {/* Mobile hamburger button */}

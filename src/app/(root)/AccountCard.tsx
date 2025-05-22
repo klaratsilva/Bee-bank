@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import type { Account } from "@/lib/types";
 import { Card, Spin } from "antd";
 import Link from "next/link";
-import { getAccountWithBalance } from "../lib/getAccountsWithBalance";
+import { getAccountWithBalance } from "../../lib/getAccountsWithBalance";
 
 export default function AccountCard({ account }: { account: Account }) {
   const [balance, setBalance] = useState<number | null>(null);
