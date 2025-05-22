@@ -22,7 +22,7 @@ const SideBar = () => {
     console.log("logout");
     localStorage.removeItem("currentUser");
 
-    router.push("/login"); // Or wherever your login page is
+    router.push("/login");
   };
 
   const sidebarContent = (
@@ -35,7 +35,7 @@ const SideBar = () => {
           height={54}
           className="size-[54px] max-xl:size-14"
         />
-        <h1 className="2xl:text-26 text-blue-500 font-ibm-plex-serif text-[22px] font-bold text-black-1 max-xl:hidden">
+        <h1 className="2xl:text-26font-ibm-plex-serif text-[22px] font-bold text-black ">
           Bee-Bank
         </h1>
       </Link>
@@ -44,34 +44,38 @@ const SideBar = () => {
           pathname === item.route || pathname.startsWith(`${item.route}/`);
 
         return (
-          <Link
-            href={item.route}
-            key={item.label}
-            className={cn(
-              "flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-sm justify-start text-gray-500 ",
-              {
-                "bg-blue-500": isActive,
-                "hover:text-gray-700 hover:bg-gray-100 pointer:none": !isActive,
-              }
-            )}
-            onClick={() => setDrawerOpen(false)} // close drawer on link click
+          <div
+            className={cn("rounded-sm p-3 text-gray-500", {
+              "bg-blue-500 text-white !important": isActive,
+              "hover:text-gray-700 hover:bg-gray-100 pointer:none !important":
+                !isActive,
+            })}
           >
-            <div className="relative size-6">
-              <Image
-                src={item.imgURL}
-                alt={item.label}
-                fill
-                className={cn({ "filter brightness-0 invert": isActive })}
-              />
-            </div>
-            <p
-              className={cn("text-16 font-semibold text-black-2", {
-                "text-white": isActive,
-              })}
+            <Link
+              href={item.route}
+              key={item.label}
+              className={cn(
+                "flex gap-3 items-center justify-start text-gray-500 "
+              )}
+              onClick={() => setDrawerOpen(false)}
             >
-              {item.label}
-            </p>
-          </Link>
+              <div className="relative size-6">
+                <Image
+                  src={item.imgURL}
+                  alt={item.label}
+                  fill
+                  className={cn({ "filter brightness-0 invert": isActive })}
+                />
+              </div>
+              <p
+                className={cn("text-16 font-semibold text-gray-600", {
+                  "text-white": isActive,
+                })}
+              >
+                {item.label}
+              </p>
+            </Link>
+          </div>
         );
       })}
     </nav>
@@ -88,14 +92,13 @@ const SideBar = () => {
         >
           <div className="relative size-6">
             <Image src="icons/logout.svg" fill alt="logout" />
-          </div>{" "}
+          </div>
           <h1 className="text-14 truncate text-gray-500 font-semibold">
             Log out
           </h1>
         </footer>
       </section>
 
-      {/* Mobile hamburger button */}
       <div className="md:hidden">
         <Button
           className="fixed top-4 left-108 z-50"
@@ -107,7 +110,7 @@ const SideBar = () => {
           aria-label="Open menu"
         />
       </div>
-      {/* Mobile drawer */}
+
       <Drawer
         placement="left"
         onClose={() => setDrawerOpen(false)}

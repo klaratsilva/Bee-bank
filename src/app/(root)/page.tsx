@@ -22,7 +22,7 @@ export default async function Accounts() {
         <HeaderBox
           type="greeting"
           title="Welcome,"
-          subtext={"See list of your accounts"}
+          subtext={"Manage your accounts and transactions efficiently"}
         />
         <div>
           <TotalBalanceBox accounts={accounts} />

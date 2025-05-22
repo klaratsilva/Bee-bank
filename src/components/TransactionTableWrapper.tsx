@@ -130,7 +130,11 @@ const TransactionTableWrapper = ({
             ? "no-hover bg-[#fffafa]"
             : "no-hover bg-[#f7fef6]"
         }
-        pagination={false}
+        pagination={{
+          pageSize: 8,
+
+          showQuickJumper: true,
+        }}
       />
     </>
   );

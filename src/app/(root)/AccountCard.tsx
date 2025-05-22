@@ -18,7 +18,7 @@ export default function AccountCard({ account }: { account: Account }) {
   return (
     <Link href={`/transactions?q=${account.accountId}`}>
       <Card
-        className="background-color: var(--color-cyan-200)"
+        className="transition-all duration-300  hover:shadow-lg hover:scale-[1.02] rounded-xl"
         title={account.name}
         extra={<span>{account.type}</span>}
       >

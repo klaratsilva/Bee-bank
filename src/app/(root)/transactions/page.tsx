@@ -43,7 +43,7 @@ const Transactions = async ({ searchParams }: Params) => {
         <div className="no-scrollbar flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll;">
           <HeaderBox
             title={`Recent Transactions ${q ? q : ""}`}
-            subtext="Manage your accounts and transactions efficiently"
+            subtext="Full overview od all transactions"
           />
           <TransactionTableWrapper
             transactions={q ? filteredAccountTransactions : sortedTransactions}

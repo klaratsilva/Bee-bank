@@ -63,11 +63,21 @@ export default function AddTransactionForm() {
   );
 
   const onSubmit = async (data: FormValues) => {
+    const receiverUser = users.find(
+      (u) => u.name.toLowerCase() === data.receiver.toLowerCase()
+    );
+
+    if (!receiverUser) {
+      message.error("Receiver not found.");
+      setLoading(false);
+      return;
+    }
+
     const newTransaction: TransactionWithoutId = {
       senderAccountId: data.senderAccountId,
       senderUserId: user!.userId,
       sender: user!.name,
-      receiverUserId: "d4e3f2a1b0", // hardcoded — you can make this dynamic
+      receiverUserId: receiverUser.userId,
       receiver: data.receiver,
       receiverAccountId: data.receiverAccountId,
       amount: data.amount,
