@@ -86,7 +86,7 @@ export default function AddTransactionForm() {
       if (!res.ok) throw new Error("Failed to create transaction");
 
       message.success("Transaction added!");
-      router.push(`/accounts/${data.senderAccountId}/transactions`);
+      router.push(`/transactions`);
     } catch (error) {
       console.error(error);
       message.error("Error adding transaction");
@@ -123,15 +123,22 @@ export default function AddTransactionForm() {
           <span className="text-red-500">{errors.senderAccountId.message}</span>
         )}
       </div>
-
       {/* Receiver Name Input */}
       <div>
         <label className="block text-sm font-medium text-gray-600 mb-1">
           Receiver Name
         </label>
-        <Input
-          {...register("receiver", { required: "Receiver name is required" })}
-          className="w-full border rounded px-3 py-2"
+        <Controller
+          name="receiver"
+          control={control}
+          rules={{ required: "Receiver name is required" }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              className="w-full border rounded px-3 py-2"
+              placeholder="Enter receiver name"
+            />
+          )}
         />
         {errors.receiver && (
           <span className="text-red-500">{errors.receiver.message}</span>
@@ -143,11 +150,17 @@ export default function AddTransactionForm() {
         <label className="block text-sm font-medium text-gray-600 mb-1">
           Receiver Account Number
         </label>
-        <Input
-          {...register("receiverAccountId", {
-            required: "Receiver account number is required",
-          })}
-          className="w-full border rounded px-3 py-2"
+        <Controller
+          name="receiverAccountId"
+          control={control}
+          rules={{ required: "Receiver account number is required" }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              className="w-full border rounded px-3 py-2"
+              placeholder="Enter receiver account number"
+            />
+          )}
         />
         {errors.receiverAccountId && (
           <span className="text-red-500">
@@ -161,14 +174,27 @@ export default function AddTransactionForm() {
         <label className="block text-sm font-medium text-gray-600 mb-1">
           Amount
         </label>
-        <Input
-          type="number"
-          {...register("amount", {
+        <Controller
+          name="amount"
+          control={control}
+          rules={{
             required: "Amount is required",
-            valueAsNumber: true,
             min: { value: 1, message: "Minimum amount is 1" },
-          })}
-          className="w-full border rounded px-3 py-2"
+            validate: (value) =>
+              (typeof value === "number" && !isNaN(value)) ||
+              "Amount must be a number",
+          }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              type="number"
+              className="w-full border rounded px-3 py-2"
+              placeholder="Enter amount"
+              onChange={(e) =>
+                field.onChange(e.target.value ? Number(e.target.value) : "")
+              }
+            />
+          )}
         />
         {errors.amount && (
           <span className="text-red-500">{errors.amount.message}</span>
@@ -198,16 +224,23 @@ export default function AddTransactionForm() {
           <span className="text-red-500">{errors.date.message}</span>
         )}
       </div>
-
       {/* Message Textarea */}
       <div>
         <label className="block text-sm font-medium text-gray-600 mb-1">
           Message
         </label>
-        <Input.TextArea
-          rows={3}
-          {...register("message", { required: "Message is required" })}
-          className="w-full border rounded px-3 py-2"
+        <Controller
+          name="message"
+          control={control}
+          rules={{ required: "Message is required" }}
+          render={({ field }) => (
+            <Input.TextArea
+              {...field}
+              rows={3}
+              className="w-full border rounded px-3 py-2"
+              placeholder="Enter message"
+            />
+          )}
         />
         {errors.message && (
           <span className="text-red-500">{errors.message.message}</span>

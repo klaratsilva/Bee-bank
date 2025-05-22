@@ -2,9 +2,7 @@ import HeaderBox from "@/components/HeaderBox";
 import TransactionTableWrapper from "@/components/TransactionTableWrapper";
 import { Transaction } from "@/lib/types";
 import { BASE_URL } from "@/server/const";
-import Flex from "antd/es/flex";
 import { notFound } from "next/navigation";
-import React from "react";
 
 type Params = {
   params: {
@@ -28,7 +26,14 @@ const Transactions = async ({ searchParams }: Params) => {
 
   const transactions = await res.json();
 
-  const filteredAccountTransactions = transactions.filter(
+  const sortedTransactions = transactions
+    .slice()
+    .sort(
+      (a: Transaction, b: Transaction) =>
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+
+  const filteredAccountTransactions = sortedTransactions.filter(
     (tx: Transaction) => tx.senderAccountId === q || tx.receiverAccountId === q
   );
 
@@ -41,7 +46,7 @@ const Transactions = async ({ searchParams }: Params) => {
             subtext="Manage your accounts and transactions efficiently"
           />
           <TransactionTableWrapper
-            transactions={q ? filteredAccountTransactions : transactions}
+            transactions={q ? filteredAccountTransactions : sortedTransactions}
           />
         </div>
       </section>

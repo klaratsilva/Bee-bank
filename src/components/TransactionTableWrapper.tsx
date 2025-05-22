@@ -100,11 +100,13 @@ const TransactionTableWrapper = ({
       title: "Receiver",
       dataIndex: "receiver",
       key: "receiver",
+      responsive: ["md"],
     },
     {
       title: "Sender",
       dataIndex: "sender",
       key: "sender",
+      responsive: ["md"],
     },
     {
       title: "Message",
