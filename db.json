@@ -207,6 +207,18 @@
       "amount": 100,
       "date": "2025-05-22",
       "message": "shoes\n"
+    },
+    {
+      "id": "07b1",
+      "senderAccountId": "acc1002",
+      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "sender": "Klara Silva",
+      "receiverUserId": "d4e3f2a1b0",
+      "receiver": "Bob Builder",
+      "receiverAccountId": "acc2002",
+      "amount": 10,
+      "date": "2025-05-23",
+      "message": "Grocery"
     }
   ]
 }

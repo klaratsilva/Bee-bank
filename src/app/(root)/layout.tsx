@@ -16,9 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex h-screen w-full font-inter">
+    <main className="relative flex h-screen w-full font-inter">
       <SideBar />
-      <div className="flex size-full flex-col">{children}</div>
+      <div className="flex-1 flex flex-col overflow-auto">{children}</div>
     </main>
   );
 }

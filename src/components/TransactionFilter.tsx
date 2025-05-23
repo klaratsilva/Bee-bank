@@ -18,7 +18,7 @@ const TransactionFilter: React.FC<TransactionFilterProps> = ({
   };
 
   return (
-    <Space style={{ marginBottom: 16 }} wrap>
+    <Space>
       <DatePicker
         value={filterDate ? dayjs(filterDate) : null}
         onChange={(date) =>

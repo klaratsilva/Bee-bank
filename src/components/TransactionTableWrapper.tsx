@@ -126,9 +126,12 @@ const TransactionTableWrapper = ({
         dataSource={filteredTransactions}
         rowKey="id"
         rowClassName={(record) =>
-          record.senderUserId === currentUser?.userId
-            ? "no-hover bg-[#fffafa]"
-            : "no-hover bg-[#f7fef6]"
+          cn(
+            "no-hover border-b-2 border-black !important",
+            record.senderUserId === currentUser?.userId
+              ? "bg-[#fffafa]"
+              : "bg-[#f7fef6]"
+          )
         }
         pagination={{
           pageSize: 8,

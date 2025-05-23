@@ -77,7 +77,7 @@ export default function AddTransactionForm() {
       senderAccountId: data.senderAccountId,
       senderUserId: user!.userId,
       sender: user!.name,
-      receiverUserId: receiverUser.userId,
+      receiverUserId: receiverUser.userId, // hardcoded — you can make this dynamic
       receiver: data.receiver,
       receiverAccountId: data.receiverAccountId,
       amount: data.amount,
