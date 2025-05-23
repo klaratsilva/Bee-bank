@@ -20,6 +20,7 @@ const AccountList = ({ accounts }: AccountListProps) => {
   const userAccounts = accounts.filter(
     (account) => account.userId === user?.userId
   );
+
   return (
     <Row gutter={[16, 16]}>
       {userAccounts.map((account) => (
