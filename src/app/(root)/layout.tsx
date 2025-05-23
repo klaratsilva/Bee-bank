@@ -1,13 +1,13 @@
-import { BankOutlined } from "@ant-design/icons";
-import Link from "next/link";
-import Image from "next/image";
-
-import "../globals.css";
 import SideBar from "../../components/SideBar";
+import "../globals.css";
 
 export const metadata = {
   title: "BeeBank",
   description: "A modern banking experience",
+
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({

@@ -6,15 +6,15 @@
       "username": "ksilva",
       "password": "12345678",
       "name": "Klara Silva",
-      "email": "sim@gmail.com"
+      "email": "klara.silva@example.com"
     },
     {
       "id": "e765",
       "userId": "d4e3f2a1b0",
-      "username": "Bob",
-      "password": "12345678",
+      "username": "bbuilder",
+      "password":  "12345678",
       "name": "Bob Builder",
-      "email": "bob@gmail.com"
+      "email": "bob.builder@example.com"
     }
   ],
   "accounts": [
@@ -56,11 +56,11 @@
       "id": "tx001",
       "senderAccountId": "acc1001",
       "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
-      "sender": "Klara Wonderland",
+      "sender": "Klara Silva",
       "receiverUserId": "d4e3f2a1b0",
       "receiver": "Bob Builder",
       "receiverAccountId": "acc2001",
-      "amount": 250,
+      "amount": 100.00,
       "date": "2024-05-01",
       "message": "Transfer to Bob's savings"
     },
@@ -68,23 +68,11 @@
       "id": "tx002",
       "senderAccountId": "acc1002",
       "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
-      "sender": "Klara Wonderland",
+      "sender": "Klara Silva",
       "receiverUserId": "d4e3f2a1b0",
       "receiver": "Bob Builder",
       "receiverAccountId": "acc2002",
-      "amount": 100,
-      "date": "2024-05-02",
-      "message": "Transfer to Bob's checking"
-    },
-    {
-      "id": "tx002",
-      "senderAccountId": "acc1002",
-      "senderUserId": "a9f8b7c6dcfff",
-      "sender": "Test",
-      "receiverUserId": "d4e3f2a1b0",
-      "receiver": "Bob Builder",
-      "receiverAccountId": "acc2002",
-      "amount": 100,
+      "amount": 50.00,
       "date": "2024-05-02",
       "message": "Transfer to Bob's checking"
     },
@@ -96,7 +84,7 @@
       "receiverUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
       "receiver": "Klara Silva",
       "receiverAccountId": "acc1001",
-      "amount": 300,
+      "amount": 400.00,
       "date": "2024-05-03",
       "message": "Return transfer to Klara's savings"
     },
@@ -108,7 +96,7 @@
       "receiverUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
       "receiver": "Klara Silva",
       "receiverAccountId": "acc1002",
-      "amount": 150,
+      "amount": 200.00,
       "date": "2024-05-04",
       "message": "Return transfer to Klara's checking"
     },
@@ -120,105 +108,83 @@
       "receiverUserId": "d4e3f2a1b0",
       "receiver": "Bob Builder",
       "receiverAccountId": "acc2002",
-      "amount": 75,
+      "amount": 25.00,
       "date": "2024-05-05",
       "message": "Small transfer to Bob's checking"
     },
     {
-      "id": "9a52",
+      "id": "tx006",
       "senderAccountId": "acc1001",
       "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
       "sender": "Klara Silva",
-      "receiverUserId": "d4e3f2a1b0",
-      "receiver": "",
-      "receiverAccountId": "",
-      "amount": 50,
+      "receiverUserId": null,
+      "receiver": null,
+      "receiverAccountId": null,
+      "amount": 50.00,
       "date": "2025-05-21",
-      "message": "rent"
+      "message": "Rent payment"
     },
     {
-      "id": "f0d8",
-      "senderAccountId": "acc1002",
-      "senderUserId": "93ae-419d-b879-a6e4f6ae13b9",
-      "sender": "",
-      "receiverUserId": "d4e3f2a1b0",
-      "receiver": "",
-      "receiverAccountId": "",
-      "amount": 500,
-      "date": "2025-05-21",
-      "message": "food"
-    },
-    {
-      "id": "cc39",
-      "senderAccountId": "acc1001",
-      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
-      "sender": "Klara Silva",
-      "receiverUserId": "d4e3f2a1b0",
-      "receiver": "Bob Builder",
-      "receiverAccountId": "acc2002",
-      "amount": 600,
-      "date": "2025-05-21",
-      "message": "eeee"
-    },
-    {
-      "id": "c364",
-      "senderAccountId": "acc1001",
-      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
-      "sender": "Klara Silva",
-      "receiverUserId": "d4e3f2a1b0",
-      "receiver": "Bob Builder",
-      "receiverAccountId": "acc2002",
-      "amount": 5000,
-      "date": "2025-05-22",
-      "message": "Rent"
-    },
-    {
-      "id": "b518",
-      "senderAccountId": "acc1001",
-      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
-      "sender": "Klara Silva",
-      "receiverUserId": "d4e3f2a1b0",
-      "receiver": "Bob Builder",
-      "receiverAccountId": "acc2002",
-      "amount": 10,
-      "date": "2025-05-21",
-      "message": "socks"
-    },
-    {
-      "id": "6d5e",
-      "senderAccountId": "acc1001",
-      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
-      "sender": "Klara Silva",
-      "receiverUserId": "d4e3f2a1b0",
-      "receiver": "Bob Builder",
-      "receiverAccountId": "acc2002",
-      "amount": 10,
-      "date": "2025-05-22",
-      "message": "socks"
-    },
-    {
-      "id": "7ebb",
-      "senderAccountId": "acc1001",
-      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
-      "sender": "Klara Silva",
-      "receiverUserId": "d4e3f2a1b0",
-      "receiver": "Bob Builder",
-      "receiverAccountId": "acc2002",
-      "amount": 100,
-      "date": "2025-05-22",
-      "message": "shoes\n"
-    },
-    {
-      "id": "07b1",
+      "id": "tx007",
       "senderAccountId": "acc1002",
       "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
       "sender": "Klara Silva",
+      "receiverUserId": null,
+      "receiver": null,
+      "receiverAccountId": null,
+      "amount": 50.00,
+      "date": "2025-05-21",
+      "message": "Food expenses"
+    },
+    {
+      "id": "tx008",
+      "senderAccountId": "acc1001",
+      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "sender": "Klara Silva",
       "receiverUserId": "d4e3f2a1b0",
       "receiver": "Bob Builder",
       "receiverAccountId": "acc2002",
-      "amount": 10,
-      "date": "2025-05-23",
-      "message": "Grocery"
+      "amount": 400.00,
+      "date": "2025-05-21",
+      "message": "Monthly transfer"
+    },
+    {
+      "id": "tx009",
+      "senderAccountId": "acc2001",
+      "senderUserId": "d4e3f2a1b0",
+      "sender": "Bob Builder",
+      "receiverUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "receiver": "Klara Silva",
+      "receiverAccountId": "acc1001",
+      "amount": 1500.00,
+      "date": "2025-05-22",
+      "message": "Bonus payment to Klara"
+    },
+    {
+      "id": "tx010",
+      "senderAccountId": "acc1001",
+      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "sender": "Klara Silva",
+      "receiverUserId": "d4e3f2a1b0",
+      "receiver": "Bob Builder",
+      "receiverAccountId": "acc2002",
+      "amount": 10.00,
+      "date": "2025-05-21",
+      "message": "Bought socks"
+    },
+    {
+      "id": "tx011",
+      "senderAccountId": "acc1001",
+      "senderUserId": "734f87b6-93ae-419d-b879-a6e4f6ae13b9",
+      "sender": "Klara Silva",
+      "receiverUserId": "d4e3f2a1b0",
+      "receiver": "Bob Builder",
+      "receiverAccountId": "acc2002",
+      "amount": 100.00,
+      "date": "2025-05-22",
+      "message": "Bought shoes"
     }
   ]
 }
+
+
